@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#07111f">
+    <meta
+      name="description"
+      content="LegalMate System Intelligence — sistem bantuan hukum cerdas untuk informasi hukum yang jelas dan terstruktur."
+    >
+    <title>LegalMate | System Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Pemilihan agen">
+        <a class="brand" href="#" aria-label="Beranda LegalMate System Intelligence">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 5v20M9 9h14M11 9 6 18h10L11 9Zm10 0-5 9h10l-5-9ZM10 25h12" />
+              <path d="M4.5 18c0 2 1.3 3 3.5 3s3.5-1 3.5-3M20.5 18c0 2 1.3 3 3.5 3s3.5-1 3.5-3" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">LegalMate</span>
+            <span class="brand-kicker">SYSTEM INTELLIGENCE</span>
+          </span>
+        </a>
+
+        <div class="sidebar-section">
+          <p class="section-label">PILIHAN AGENT ASSISTANT</p>
+          <div class="agent-list" role="group" aria-label="Pilih Agent Assistant">
+            <button class="agent-card is-active" type="button" data-mode="consultant" aria-pressed="true">
+              <span class="agent-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v17M6 7h12M8 7l-4 7h8L8 7Zm8 0-4 7h8l-4-7ZM5 21h14" />
+                  <path d="M2 14c0 1.5 1 2.5 2 2.5S6 15.5 6 14m12 0c0 1.5 1 2.5 2 2.5s2-1 2-2.5" />
+                </svg>
+              </span>
+              <span class="agent-copy">
+                <span class="agent-name">Agent Konsultan Hukum</span>
+                <span class="agent-type">Informasi hukum umum</span>
+              </span>
+              <span class="agent-indicator" aria-hidden="true"></span>
+            </button>
+            <button class="agent-card" type="button" data-mode="contract" aria-pressed="false">
+              <span class="agent-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6 3.75h8l4 4V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.75a1 1 0 0 1 1-1Z" />
+                  <path d="M14 4v4h4M8 12h8M8 16h8" />
+                </svg>
+              </span>
+              <span class="agent-copy">
+                <span class="agent-name">Agent Analisis Kontrak</span>
+                <span class="agent-type">Klausul dan penjelasan risiko</span>
+              </span>
+              <span class="agent-indicator" aria-hidden="true"></span>
+            </button>
+            <button class="agent-card" type="button" data-mode="learning" aria-pressed="false">
+              <span class="agent-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M4 5.75A2.75 2.75 0 0 1 6.75 3H20v16H6.75A2.75 2.75 0 0 0 4 21.75v-16Z" />
+                  <path d="M4 18.5a2.5 2.5 0 0 1 2.5-2.5H20M8 7h8M8 11h6" />
+                </svg>
+              </span>
+              <span class="agent-copy">
+                <span class="agent-name">Agent Pembelajaran Hukum</span>
+                <span class="agent-type">Konsep hukum untuk dipelajari</span>
+              </span>
+              <span class="agent-indicator" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-note">
+          <span class="note-icon" aria-hidden="true">i</span>
+          <p>Untuk informasi dan pembelajaran hukum. Bukan pengganti nasihat dari profesional hukum yang berkualifikasi.</p>
+        </div>
+
+        <div class="sidebar-footer">
+          <span class="footer-emblem" aria-hidden="true">LM</span>
+          <span><strong>Dirancang agar jelas.</strong><br>Membantu merumuskan pertanyaan.</span>
+          <span class="version-tag">BETA</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div class="mobile-brand" aria-label="LegalMate System Intelligence">
+            <span class="mobile-brand-mark" aria-hidden="true">⚖</span>
+            <span>LegalMate <span class="mobile-brand-divider">/</span> <span class="mobile-brand-subtitle">SYSTEM INTELLIGENCE</span></span>
+          </div>
+          <div class="topbar-context">
+            <span class="context-label">SISTEM BANTUAN HUKUM CERDAS</span>
+            <span class="context-divider" aria-hidden="true"></span>
+            <span class="context-current" id="topbar-agent">Agent Konsultan Hukum</span>
+          </div>
+          <div class="system-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>System Intelligence siap</span>
+          </div>
+        </header>
+
+        <section class="conversation" aria-labelledby="conversation-title">
+          <div class="conversation-heading">
+            <div>
+              <p class="eyebrow">RUANG KONSULTASI HUKUM ANDA</p>
+              <h1 id="conversation-title">Pahami hukum dengan lebih jelas.</h1>
+              <p class="conversation-subtitle">Ajukan pertanyaan dan dapatkan penjelasan terstruktur sebagai awal penelusuran Anda.</p>
+            </div>
+            <div class="confidential-badge">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 7V5a4 4 0 0 1 8 0v2m-9 0h10v7H3V7Z" />
+                <circle cx="8" cy="10.5" r=".75" />
+              </svg>
+              <span>Sesi privat</span>
+            </div>
+          </div>
+
+          <div class="active-agent-banner" aria-live="polite">
+            <span class="active-agent-icon" id="active-agent-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v17M6 7h12M8 7l-4 7h8L8 7Zm8 0-4 7h8l-4-7ZM5 21h14" />
+                <path d="M2 14c0 1.5 1 2.5 2 2.5S6 15.5 6 14m12 0c0 1.5 1 2.5 2 2.5s2-1 2-2.5" />
+              </svg>
+            </span>
+            <span class="active-agent-copy">
+              <span class="active-agent-label">AGENT ASSISTANT AKTIF</span>
+              <strong id="active-agent-name">Agent Konsultan Hukum</strong>
+            </span>
+            <span class="gemini-badge" aria-label="Didukung teknologi Gemini">
+              <span class="gemini-spark" aria-hidden="true">✦</span>
+              Gemini Technology
+            </span>
+          </div>
+
+          <div class="configuration-cards" aria-label="Konfigurasi agent aktif">
+            <article class="configuration-card">
+              <span class="configuration-label">TEMPERATURE</span>
+              <strong class="configuration-value" id="config-temperature">0.3</strong>
+              <span class="configuration-description">Kreativitas respons</span>
+            </article>
+            <article class="configuration-card">
+              <span class="configuration-label">TOP_P</span>
+              <strong class="configuration-value" id="config-top-p">0.8</strong>
+              <span class="configuration-description">Cakupan pilihan kata</span>
+            </article>
+            <article class="configuration-card">
+              <span class="configuration-label">TOP_K</span>
+              <strong class="configuration-value" id="config-top-k">20</strong>
+              <span class="configuration-description">Pilihan token teratas</span>
+            </article>
+          </div>
+
+          <div class="chat-panel">
+            <div
+              class="chat-history"
+              id="chat"
+              role="log"
+              aria-label="Percakapan"
+              aria-live="polite"
+              aria-relevant="additions text"
+              aria-busy="false"
+            ></div>
+            <div class="suggestions" id="suggestions" aria-label="Contoh pertanyaan">
+              <span class="suggestions-label">CONTOH PERTANYAAN</span>
+              <button type="button" class="suggestion-chip">Apa yang dimaksud dengan wanprestasi?</button>
+              <button type="button" class="suggestion-chip">Apa yang perlu diperhatikan dalam klausul kontrak?</button>
+              <button type="button" class="suggestion-chip">Jelaskan asas praduga tak bersalah.</button>
+            </div>
+            <form class="composer" id="chat-form">
+              <label class="visually-hidden" for="message">Pertanyaan hukum Anda</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="1"
+                maxlength="4000"
+                placeholder="Tulis pertanyaan hukum atau jelaskan klausul yang ingin dipahami..."
+                required
+              ></textarea>
+              <div class="composer-footer">
+                <span class="input-hint"><kbd>Enter</kbd> untuk mengirim <span aria-hidden="true">·</span> <kbd>Shift + Enter</kbd> untuk baris baru</span>
+                <span class="composer-actions">
+                  <span class="character-count" id="character-count" aria-live="polite">0 / 4000</span>
+                  <button class="send-button" id="send-button" type="submit" disabled>
+                    <span>Kirim pertanyaan</span>
+                    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M3 10h13m-5-5 5 5-5 5" />
+                    </svg>
+                  </button>
+                </span>
+              </div>
+            </form>
+          </div>
+
+          <footer class="workspace-footer">
+            <span>LegalMate System Intelligence</span>
+            <span>Informasi untuk edukasi dan panduan umum.</span>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
