@@ -2,70 +2,56 @@
 
 ### Intelligent Legal Assistance System Powered by Gemini Technology
 
-[![Node.js Backend](https://img.shields.io/badge/Node.js-Backend-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Gemini Technology](https://img.shields.io/badge/Gemini-Technology-4285F4?logo=googlegemini&logoColor=white)](https://ai.google.dev/gemini-api)
-[![System Intelligence](https://img.shields.io/badge/LegalMate-System%20Intelligence-132238)](#project-overview)
+[![Node.js](https://img.shields.io/badge/Node.js-Backend-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=111111)](https://developer.mozilla.org/docs/Web/JavaScript)
+[![Gemini AI](https://img.shields.io/badge/Gemini-AI%20Technology-4285F4?logo=googlegemini&logoColor=white)](https://ai.google.dev/gemini-api)
 [![MIT License](https://img.shields.io/badge/License-MIT-D4AF37)](./LICENSE)
 
-**LegalMate** is a domain-specific legal information and education system. It combines a focused legal workspace with three specialized Agent Assistants powered by Gemini Technology.
+**LegalMate System Intelligence** is a Gemini-powered legal information and learning system built around a multi-agent architecture. Users can choose a specialized Agent Assistant for general legal consultation, contract analysis, or learning legal concepts, then ask questions in natural language. System Intelligence returns structured explanations to help users understand a topic and decide what to explore next.
 
-## Creator
-
-**George Yesayas, S.Kom., S.H.**  
-*System Intelligence Developer*  
-Full-Stack Developer | Legal Technology Enthusiast
+The project demonstrates how Gemini Technology can support approachable legal education and information discovery without replacing a qualified legal professional.
 
 ## Project Overview
 
-LegalMate helps users get started with legal questions that can otherwise feel difficult to approach: understanding a general legal concept, reviewing contract wording, or learning a legal principle. The system was chosen as a practical legal technology use case because legal language is often dense and finding an accessible first explanation can be challenging.
+Legal rules and contracts can be difficult to understand because of dense terminology, unfamiliar concepts, and the context needed to interpret legal information. LegalMate offers a focused place to start: users select an Agent Assistant, submit a question, and receive an explanation tailored to that purpose.
 
-Users ask in natural language and choose an Agent Assistant that fits their goal. System Intelligence applies the selected agent's instructions and Gemini generation parameters to produce a structured explanation in Indonesian by default. The application is designed to support understanding and further research—not to decide a legal matter.
-
-## Use Case: Legal Assistance System
-
-LegalMate supports three complementary activities:
-
-- **Legal information support:** Explore general legal topics and principles.
-- **Contract analysis assistance:** Understand clause wording, obligations, and possible areas of risk.
-- **Legal learning assistance:** Learn legal concepts through clear explanations and examples.
-
-Typical flow: select an Agent Assistant, submit a question, and review its response as an educational starting point.
+The backend combines shared System Instructions with the selected agent's specialist guidance and Gemini model parameters. Responses are in Indonesian by default and explain uncertainty and limitations. The application is an educational and informational tool, not a source of final legal decisions.
 
 ## Features
 
-- **Multi Agent Assistant Architecture** with distinct specialist roles.
-- **Gemini Technology Integration** using the `gemini-2.5-flash` model through `@google/genai`.
-- **System Instruction** for professional, structured, jurisdiction-aware responses that explain limitations.
-- **Configurable model parameters** (`temperature`, `topP`, and `topK`) for each agent.
-- **Premium legal dashboard interface** with responsive layout, visible active-agent configuration, suggested questions, timestamps, and processing feedback.
-- Input validation and structured API errors; Gemini credentials remain in the backend environment.
-
-## Agent Assistants
-
-| Agent Assistant | Purpose | Temperature | Top P | Top K | Response characteristics |
-| --- | --- | ---: | ---: | ---: | --- |
-| **Agent Konsultan Hukum** | General legal information assistance. | 0.3 | 0.8 | 20 | Precise, structured explanations of general principles; notes when jurisdiction-specific context matters. |
-| **Agent Analisis Kontrak** | Contract clause understanding and risk explanation. | 0.4 | 0.85 | 30 | Plain-language clause summaries, obligations, and potential risk areas to review. |
-| **Agent Pembelajaran Hukum** | Legal education and concept explanation. | 0.7 | 0.9 | 40 | Accessible teaching, broken into key ideas and examples when useful. |
-
-Each agent has a dedicated instruction and model configuration in `backend/agents.js`. A shared System Instruction in `backend/config.js` guides language, tone, structure, uncertainty, and legal limitations.
-
-## Architecture
-
-![LegalMate System Intelligence architecture](screenshots/architecture.png)
-
-The browser interface is served by the Express backend. The backend validates the selected agent and question, combines shared and agent-specific instructions, and sends the request to Gemini Technology. The resulting Agent Assistant response is returned to the interface.
+- **Multi-agent architecture:** Three Agent Assistants focused on distinct legal tasks.
+- **Gemini Technology integration:** Uses `gemini-2.5-flash` through Google's `@google/genai` SDK.
+- **System Instructions:** Shared guidance for professional, structured answers and clear legal limitations.
+- **Specialist model parameters:** Each agent has its own `temperature`, `topP`, and `topK` settings.
+- **Premium legal dashboard:** Responsive interface with active-agent status, visible parameters, suggested questions, timestamps, and processing feedback.
+- **Validated API:** Checks incoming questions and agent modes, returns structured error responses, and keeps the Gemini credential on the server.
 
 ## Technology Stack
 
 | Layer | Technology |
 | --- | --- |
-| Frontend | HTML, CSS, JavaScript |
+| Frontend | HTML, CSS, JavaScript (vanilla) |
 | Backend | Node.js, Express.js |
-| Model | Gemini Technology (`gemini-2.5-flash`, `@google/genai`) |
-| Configuration | dotenv |
+| Intelligence engine | Gemini Technology (`gemini-2.5-flash`, `@google/genai`) |
+| Environment configuration | dotenv |
 
-The application uses its existing vanilla JavaScript frontend and Node.js backend; no frontend framework or build step is required.
+No frontend framework or build step is required.
+
+## System Architecture
+
+![LegalMate System Intelligence architecture diagram](screenshots/architecture.png)
+
+The Express backend serves the browser interface and handles `POST /api/chat`. It validates the request, selects the appropriate Agent Assistant configuration, builds the Gemini request using shared and agent-specific instructions, then returns the response to the interface.
+
+## Agent Assistant Explanation
+
+| Agent Assistant | Purpose | Temperature | Top P | Top K | Response characteristics |
+| --- | --- | ---: | ---: | ---: | --- |
+| **Agent Konsultan Hukum** | General legal information assistance. | 0.3 | 0.8 | 20 | Precise, structured explanations of general principles, with attention to jurisdiction and context. |
+| **Agent Analisis Kontrak** | Contract clause understanding and risk explanation. | 0.4 | 0.85 | 30 | Plain-language explanations of clauses, obligations, and potential risks to review. |
+| **Agent Pembelajaran Hukum** | Legal learning and concept explanation. | 0.7 | 0.9 | 40 | Accessible teaching that breaks concepts into key ideas and examples when helpful. |
+
+Agent-specific instructions and parameter values are defined in `backend/agents.js`. Shared identity, language, tone, and legal limitations are defined in `backend/config.js`.
 
 ## Installation Guide
 
@@ -77,18 +63,15 @@ The application uses its existing vanilla JavaScript frontend and Node.js backen
 
 ### Clone and install
 
-Replace `<repository-url>` with the URL of your GitHub repository:
-
 ```bash
-git clone <repository-url>
-cd LegalMate-System-Intelligence
-cd backend
+git clone https://github.com/George8yesayas/LegalMate-System-Intelligence.git
+cd LegalMate-System-Intelligence/backend
 npm install
 ```
 
-### Configure the environment
+## Environment Configuration
 
-Create `backend/.env` from the example, then add your Gemini API key:
+Create a local `backend/.env` from the example file:
 
 **PowerShell**
 
@@ -102,69 +85,57 @@ Copy-Item .env.example .env
 cp .env.example .env
 ```
 
-Set the values in `backend/.env`:
+Set your local values in `backend/.env`:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key
 PORT=3000
 ```
 
-Keep `.env` private; it is excluded by `.gitignore`. The example file `backend/.env.example` is safe to commit.
+Never commit or share the real `.env` file. It is excluded by `.gitignore`. The template `backend/.env.example` is safe to keep in the repository.
 
-### Start the application
+## Usage Guide
 
-From the `backend/` directory:
+From the `backend/` directory, start the application:
 
 ```bash
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The basic service check is available at [http://localhost:3000/api/health](http://localhost:3000/api/health). Stop the server with `Ctrl+C`.
+Open [http://localhost:3000](http://localhost:3000), choose an Agent Assistant, and enter a legal question. Suggested questions are available for each agent. The service health endpoint is [http://localhost:3000/api/health](http://localhost:3000/api/health). Stop the server with `Ctrl+C`.
 
-## Screenshots
+### Screenshots
 
-The `screenshots/` directory contains the architecture diagram and a guide for capturing the application. Add real application screenshots after running the project with a configured Gemini API key:
+The architecture diagram is available at [`screenshots/architecture.png`](screenshots/architecture.png). To complete the interface gallery, run the system with a valid key, wait for an Agent Assistant response, and replace each screenshot placeholder with the captured image:
 
-| File | Suggested capture |
+| Screenshot | Description |
 | --- | --- |
-| `screenshots/landing-page.png` | Landing page and welcome message |
-| `screenshots/consultant-agent.png` | Agent Konsultan Hukum conversation |
-| `screenshots/contract-agent.png` | Agent Analisis Kontrak conversation |
-| `screenshots/learning-agent.png` | Agent Pembelajaran Hukum conversation |
+| Landing Page — `screenshots/landing-page.png` | Initial dashboard and welcome message |
+| Agent Konsultan Hukum — `screenshots/consultant-agent.png` | General legal information conversation |
+| Agent Analisis Kontrak — `screenshots/contract-agent.png` | Contract clause or risk explanation |
+| Agent Pembelajaran Hukum — `screenshots/learning-agent.png` | Legal concept learning conversation |
+| Architecture Diagram — `screenshots/architecture.png` | System component flow and Gemini integration |
 
-Use non-sensitive sample questions. Never include API keys, personal information, or private contract text in screenshots.
+See [`screenshots/README.md`](screenshots/README.md) for capture guidance. Use sample content only; do not include API keys, personal information, or confidential contract text.
 
-## Repository Structure
+## Legal Disclaimer
 
-```text
-LegalMate-System-Intelligence/
-├── .gitignore
-├── LICENSE
-├── README.md
-├── backend/
-│   ├── .env.example
-│   ├── agents.js
-│   ├── config.js
-│   ├── index.js
-│   ├── package-lock.json
-│   └── package.json
-├── public/
-│   ├── index.html
-│   ├── script.js
-│   └── style.css
-└── screenshots/
-    ├── architecture.png
-    ├── consultant-agent.placeholder.md
-    ├── contract-agent.placeholder.md
-    ├── landing-page.placeholder.md
-    ├── learning-agent.placeholder.md
-    └── README.md
-```
+LegalMate System Intelligence provides general legal information and educational assistance only. It does not provide a final legal decision or formal legal opinion and does not replace professional legal consultation. Laws and procedures vary by jurisdiction and context. Consult a qualified legal professional about a specific matter.
 
-## Disclaimer
+## Creator
 
-LegalMate System Intelligence provides general legal information and educational assistance only. It does not provide a final legal decision or formal legal opinion and does not replace professional legal consultation. Laws and procedures vary by jurisdiction and context; consult a qualified legal professional about a specific matter.
+### Creator Profile
+
+**Developed by:**<br>
+George Yesayas, S.Com., S.H.
+
+**Role:**<br>
+System Intelligence Developer
+
+**Project:**<br>
+AI & Legal Technology Project<br>
+Hacktiv8 Final Submission
 
 ## License
 
-This project is distributed under the [MIT License](./LICENSE). Copyright © 2026 George Yesayas, S.Kom., S.H.
+This project is distributed under the [MIT License](LICENSE). Copyright © 2026 George Yesayas, S.Kom., S.H.
